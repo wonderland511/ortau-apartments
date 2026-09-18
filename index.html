@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark light">
+<title>Квартиры рядом с ORTAU</title>
+<meta name="description" content="Варианты квартир рядом с ЖК ORTAU (Наурызбай батыра 127) на 23–28 сентября 2026: цена, рейтинг, отзывы, расстояние.">
+<style>
+:root{
+  --bg:#0b0b0d; --card:#161618; --card2:#1d1d20; --ink:#f5f5f7; --mut:#a1a1a6; --line:#2a2a2e;
+  --acc:#4da3ff; --accInk:#06131f; --ok:#5ad38a; --warn:#ffb340; --ort:#ff7a45; --shadow:0 10px 30px rgba(0,0,0,.35);
+}
+@media (prefers-color-scheme: light){
+  :root{ --bg:#f5f5f7; --card:#ffffff; --card2:#f2f2f5; --ink:#1d1d1f; --mut:#6e6e73; --line:#e2e2e7;
+    --acc:#0071e3; --accInk:#fff; --ok:#1e8e4e; --warn:#b26a00; --ort:#e2531c; --shadow:0 10px 30px rgba(0,0,0,.08); }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px 64px}
+header{padding:44px 0 20px}
+.eyebrow{color:var(--mut);font-size:14px;letter-spacing:.02em}
+h1{font-size:clamp(32px,6vw,52px);line-height:1.05;letter-spacing:-.03em;margin:8px 0 12px;font-weight:700}
+.lead{color:var(--mut);font-size:18px;margin:0;max-width:720px}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 0;padding:0;list-style:none}
+.facts li{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:14px}
+h3.sec{font-size:24px;letter-spacing:-.02em;margin:40px 0 14px}
+
+/* таблица */
+.table{background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--shadow)}
+.th,.row{display:grid;grid-template-columns:36px 1.7fr 1fr 1.1fr .9fr 1fr;gap:12px;align-items:center;padding:14px 18px}
+.th{color:var(--mut);font-size:12px;text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid var(--line)}
+.row{color:inherit;text-decoration:none;border-bottom:1px solid var(--line);min-height:64px;transition:background .15s}
+.row:last-child{border-bottom:0}
+.row:hover{background:var(--card2)} .row:active{background:var(--card2)}
+.row:focus-visible,.btn:focus-visible,.nav:focus-visible{outline:3px solid var(--acc);outline-offset:-3px}
+.row .n{width:28px;height:28px;border-radius:50%;background:var(--acc);color:var(--accInk);display:grid;place-items:center;font-weight:700;font-size:14px}
+.row small,.c small{display:block;color:var(--mut);font-size:12px;font-weight:400}
+.row b{font-weight:600}
+.nm b{display:block}
+
+/* схема */
+.radarbox{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:12px;box-shadow:var(--shadow)}
+.radar{width:100%;height:auto;max-height:640px;display:block}
+.ring{fill:none;stroke:var(--line);stroke-width:1.2;stroke-dasharray:4 5}
+.rl{fill:var(--mut);font-size:11px}
+.ln{stroke:var(--mut);stroke-width:1;opacity:.35}
+.dot{fill:var(--acc)} .dn{fill:var(--accInk);font-size:12px;font-weight:700}
+.dl{fill:var(--ink);font-size:14px;font-weight:600;paint-order:stroke;stroke:var(--card);stroke-width:4px}
+.ort{fill:var(--ort)} .ol{fill:var(--ort);font-size:15px;font-weight:700}
+.north path{fill:var(--mut)} .north text{fill:var(--mut);font-size:12px}
+.cap{color:var(--mut);font-size:13px;margin:10px 4px 2px}
+
+/* карточки */
+.cards{display:grid;gap:22px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:24px;overflow:hidden;box-shadow:var(--shadow);display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);scroll-margin-top:16px}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.card,header,.table,.radarbox{animation:fadeInUp .5s ease-out both}
+@media (prefers-reduced-motion: reduce){.card,header,.table,.radarbox{animation:none;opacity:1;transform:none}html{scroll-behavior:auto}}
+.gal{position:relative;background:var(--card2);min-height:280px}
+.track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;height:100%;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.track::-webkit-scrollbar{display:none}
+.track img{flex:0 0 100%;width:100%;height:100%;min-height:280px;object-fit:cover;scroll-snap-align:center}
+.nav{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;border:0;background:rgba(0,0,0,.55);color:#fff;font-size:26px;line-height:1;cursor:pointer;backdrop-filter:blur(6px)}
+.nav.prev{left:10px}.nav.next{right:10px}
+.cnt,.rank{position:absolute;bottom:10px;background:rgba(0,0,0,.6);color:#fff;font-size:12px;padding:4px 10px;border-radius:999px;backdrop-filter:blur(6px)}
+.cnt{right:10px}.rank{left:10px;font-weight:600}
+.body{padding:22px 22px 24px;display:flex;flex-direction:column;gap:14px}
+h2{margin:0;font-size:26px;letter-spacing:-.02em;line-height:1.15}
+h2 .sub{color:var(--mut);font-weight:400;font-size:17px}
+.addr{margin:-8px 0 0;color:var(--mut)}
+.dist{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.dv{background:var(--card2);border-radius:14px;padding:10px 12px}
+.dv b{display:block;font-size:20px;letter-spacing:-.02em}
+.dv span{color:var(--mut);font-size:12px;line-height:1.3;display:block}
+.dv:first-child{outline:2px solid var(--acc);outline-offset:-2px}
+.mid{display:flex;gap:12px;flex-wrap:wrap}
+.score,.price{flex:1 1 160px;background:var(--card2);border-radius:14px;padding:12px 14px}
+.score b{font-size:30px;letter-spacing:-.02em;color:var(--ok)}
+.score span{display:block;color:var(--mut);font-size:13px}
+.pv{font-size:30px;font-weight:700;letter-spacing:-.02em}
+.nop .pv{font-size:18px;color:var(--warn)}
+.pl{color:var(--mut);font-size:12.5px}
+.pw{margin-top:4px;font-size:13px;color:var(--mut)}
+.pw s{opacity:.8}.off{color:var(--ok);font-weight:600}
+.tag{background:var(--acc);color:var(--accInk);border-radius:6px;padding:1px 7px;font-size:12px;font-weight:600}
+.warn{margin:0;background:color-mix(in srgb,var(--warn) 14%,transparent);border:1px solid color-mix(in srgb,var(--warn) 45%,transparent);color:var(--ink);border-radius:12px;padding:10px 12px;font-size:14px}
+ul.chips,ul.terms,ul.cats{list-style:none;margin:0;padding:0}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips li{background:var(--card2);border-radius:999px;padding:5px 11px;font-size:13px}
+.terms li{color:var(--ok);font-size:14px;padding-left:20px;position:relative}
+.terms li::before{content:"✓";position:absolute;left:0}
+.cats{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:4px 14px;font-size:13px;color:var(--mut)}
+.cats li{display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding:3px 0}
+.cats b{color:var(--ink)}
+blockquote{margin:0 0 10px;padding:10px 14px;border-left:3px solid var(--acc);background:var(--card2);border-radius:0 12px 12px 0;font-size:14.5px}
+blockquote cite{display:block;color:var(--mut);font-size:13px;margin-top:4px;font-style:normal}
+.muted{color:var(--mut);font-size:14px;margin:0}
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:auto}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 20px;border-radius:14px;border:1px solid var(--line);background:var(--card2);color:var(--ink);text-decoration:none;font-weight:600;font-size:15px;flex:1 1 200px;transition:transform .12s,filter .12s}
+.btn.primary{background:var(--acc);color:var(--accInk);border-color:transparent}
+.btn:hover{filter:brightness(1.08)} .btn:active{transform:scale(.98)}
+
+/* стикер */
+.stickerrow{display:flex;justify-content:flex-end;padding:8px 6px 0;margin-top:14px}
+.sticker{width:112px;height:auto;transform:rotate(7deg);display:block;pointer-events:none;
+  filter:drop-shadow(2px 0 0 #fff) drop-shadow(-2px 0 0 #fff) drop-shadow(0 2px 0 #fff) drop-shadow(0 -2px 0 #fff) drop-shadow(0 6px 8px rgba(0,0,0,.3))}
+
+.notes{margin-top:30px;color:var(--mut);font-size:13.5px;border-top:1px solid var(--line);padding-top:18px}
+.notes h4{color:var(--ink);margin:0 0 8px;font-size:15px}
+.notes ul{margin:0;padding-left:18px}.notes li{margin:4px 0}
+.notes a{color:var(--acc)}
+
+@media (max-width:820px){
+  .card{grid-template-columns:1fr}
+  .gal{min-height:240px;aspect-ratio:4/3}
+  .track img{min-height:0}
+  .th{display:none}
+  .row{grid-template-columns:32px 1fr 1fr;grid-template-areas:"n nm nm" ". a b" ". c d";gap:8px 12px;padding:14px}
+  .row .n{grid-area:n}.row .nm{grid-area:nm}
+  .row>:nth-child(3){grid-area:a}.row>:nth-child(4){grid-area:b}.row>:nth-child(5){grid-area:c}.row>:nth-child(6){grid-area:d}
+  .body{padding:18px 16px 20px}
+  .dv b{font-size:18px}
+  .radar{max-height:none}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="eyebrow">Аренда · Алматы</div>
+  <h1>Квартиры рядом с ЖК ORTAU</h1>
+  <p class="lead">Подборка вариантов по близости к ЖК ORTAU: цена, рейтинг, отзывы и расстояние. Сортировка — от ближайшей.</p>
+  <ul class="facts">
+    <li>📍 ORTAU: Наурызбай батыра, 127, блок 3</li>
+    <li>🗓 23–28 сентября 2026 · 5 ночей</li>
+    <li>👤 1 взрослый · 1 номер</li>
+    <li>💵 Все цены в долларах США ($)</li>
+  </ul>
+</header>
+
+<h3 class="sec">Сравнение</h3>
+<div class="table">
+  <div class="th"><span></span><span>Квартира</span><span>До ORTAU</span><span>Пешком</span><span>Рейтинг</span><span>5 ночей</span></div>
+  <a class="row" href="#central"><span class="n">1</span><span class="nm"><b>ЖК Central Avenue #81</b><small>проспект Сейфуллина 574/1</small></span><span class="c"><b>691 м</b><small>по прямой</small></span><span class="c"><b>20 мин</b><small>пешком ~1,5 км</small></span><span class="c"><b>9,7</b><small>10 отз.</small></span><span class="c"><b>$470</b><small>$94/ночь</small></span></a><a class="row" href="#alfarabi27"><span class="n">2</span><span class="nm"><b>Аль фараби 27 #23</b><small>проспект Аль-Фараби 27</small></span><span class="c"><b>1,0 км</b><small>по прямой</small></span><span class="c"><b>20 мин</b><small>пешком ~1,5 км</small></span><span class="c"><b>8,4</b><small>5 отз.</small></span><span class="c"><b>$388</b><small>$78/ночь</small></span></a><a class="row" href="#smartlux"><span class="n">3</span><span class="nm"><b>Smart Lux 320</b><small>проспект Аль-Фараби 7к5а</small></span><span class="c"><b>1,0 км</b><small>по прямой</small></span><span class="c"><b>25 мин</b><small>пешком ~1,9 км</small></span><span class="c"><b>10</b><small>2 отз.</small></span><span class="c"><b>уточнить</b></span></a><a class="row" href="#metropole"><span class="n">4</span><span class="nm"><b>Stay Almaty Metropole</b><small>проспект Аль-Фараби 41/7, кв. 14</small></span><span class="c"><b>1,1 км</b><small>по прямой</small></span><span class="c"><b>22 мин</b><small>пешком ~1,6 км</small></span><span class="c"><b>9,5</b><small>2 отз.</small></span><span class="c"><b>уточнить</b></span></a><a class="row" href="#orion"><span class="n">5</span><span class="nm"><b>Home Comfort Orion</b><small>проспект Назарбаева 235Б</small></span><span class="c"><b>1,2 км</b><small>по прямой</small></span><span class="c"><b>24 мин</b><small>пешком ~1,8 км</small></span><span class="c"><b>10</b><small>1 отз.</small></span><span class="c"><b>$403</b><small>$81/ночь</small></span></a>
+</div>
+
+<h3 class="sec">Где они относительно ORTAU</h3>
+<div class="radarbox">
+  <svg viewBox="0 0 640 640" role="img" aria-label="Схема: расположение квартир относительно ЖК ORTAU" class="radar"><circle cx="160" cy="90" r="200" class="ring"/><text x="308" y="246" class="rl">500 м</text><circle cx="160" cy="90" r="400" class="ring"/><text x="452" y="390" class="rl">1,0 км</text><circle cx="160" cy="90" r="600" class="ring"/><text x="596" y="534" class="rl">1,5 км</text><g><line x1="160" y1="90" x2="176" y2="365" class="ln"/><circle cx="176" cy="365" r="12" class="dot"/><text x="176" y="369" text-anchor="middle" class="dn">1</text><text x="190" y="370" text-anchor="start" class="dl">Central Avenue</text></g><g><line x1="160" y1="90" x2="237" y2="484" class="ln"/><circle cx="237" cy="484" r="12" class="dot"/><text x="237" y="489" text-anchor="middle" class="dn">2</text><text x="251" y="488" text-anchor="start" class="dl">Аль фараби 27</text></g><g><line x1="160" y1="90" x2="456" y2="368" class="ln"/><circle cx="456" cy="368" r="12" class="dot"/><text x="456" y="372" text-anchor="middle" class="dn">3</text><text x="456" y="352" text-anchor="middle" class="dl">Smart Lux 320</text></g><g><line x1="160" y1="90" x2="210" y2="537" class="ln"/><circle cx="210" cy="537" r="12" class="dot"/><text x="210" y="542" text-anchor="middle" class="dn">4</text><text x="224" y="542" text-anchor="start" class="dl">Stay Almaty Metropole</text></g><g><line x1="160" y1="90" x2="528" y2="366" class="ln"/><circle cx="528" cy="366" r="12" class="dot"/><text x="528" y="371" text-anchor="middle" class="dn">5</text><text x="528" y="392" text-anchor="middle" class="dl">Home Comfort Orion</text></g><circle cx="160" cy="90" r="9" class="ort"/><text x="176" y="95" class="ol">ORTAU</text><g class="north"><path d="M606 46 l7 -20 l7 20 l-7 -6 z"/><text x="613" y="66" text-anchor="middle">С</text></g></svg>
+  <p class="cap">Схема в масштабе, север сверху. Кольца — 0,5 / 1 / 1,5 км по прямой от ORTAU. Цифры совпадают с номерами в таблице.</p>
+</div>
+
+<h3 class="sec">Подробнее по каждой</h3>
+<div class="cards">
+  
+<article class="card" id="central" style="animation-delay:0.05s">
+  <div class="gal"><div class="track"><img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/741145520.jpg?k=01de764f75b61dc6b04f0defe180457c94f4a79c3a23f6bd5f7c997f6ba7bb75&amp;o=&amp;hp=1" alt="ЖК Central Avenue #81 — фото 1" referrerpolicy="no-referrer" loading=eager decoding="async" onerror="this.style.display='none'"><img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/741145186.jpg?k=216d785382c8e553b963698984b7a3c2429d40e1444a1ffb065531dec586bd97&amp;o=&amp;hp=1" alt="ЖК Central Avenue #81 — фото 2" referrerpolicy="no-referrer" loading=lazy decoding="async" onerror="this.style.display='none'"><img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/741145488.jpg?k=03660c9c6ff217eee0f6524611489ac26c4412ef64690939d69599b3323b3c82&amp;o=&amp;hp=1" alt="ЖК Central Avenue #81 — фото 3" referrerpolicy="no-referrer" loading=lazy decoding="async" onerror="this.style.display='none'"><img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/741145637.jpg?k=f00716e1674dbff1150726c417171a62cc03325168cecd4e23cd6974cb1edf7a&amp;o=&amp;hp=1" alt="ЖК Central Avenue #81 — фото 4" referrerpolicy="no-referrer" loading=lazy decoding="async" onerror="this.style.display='none'"><img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/741145726.jpg?k=217e335e147d20815b95697f9709247d86585b900798050d8d2cba36a75320d4&amp;o=&amp;hp=1" alt="ЖК Central Avenue #81 — фото 5" referrerpolicy="no-referrer" loading=lazy decoding="async" onerror="this.style.display='none'"><img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/741145672.jpg?k=ec85bad9168b75b3f3d7504867ea739d56ca2aed9d3b1d3d7a9fd2f3fcf393be&amp;o=&amp;hp=1" alt="ЖК Central Avenue #81 — фото 6" referrerpolicy="no-referrer" loading=lazy decoding="async" onerror="this.style.display='none'"><img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/741145463.jpg?k=77ed41c16073f4963e1698556c9b5d24b7a9b9fdc94edb344f241f539d04d914&amp;o=&amp;hp=1" alt="ЖК Central Avenue #81 — фото 7" referrerpolicy="no-referrer" loading=lazy decoding="async" onerror="this.style.display='none'"><img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/741145600.jpg?k=9fd56d2f609fe1d3c116f3d67c05f65f7aee2e90f5acf3237958b8bce6bf7695&amp;o=&amp;hp=1" alt="ЖК Central Avenue #81 — фото 8" referrerpolicy="no-referrer" loading=lazy decoding="async" onerror="this.style.display='none'"></div>
+    <button class="nav prev" aria-label="Предыдущее фото" hidden>‹</button><button class="nav next" aria-label="Следующее фото" hidden>›</button>
+    <span class="cnt" hidden></span><span class="rank">№1 по близости</span></div>
+  <div class="body">
+    <h2>ЖК Central Avenue #81 <span class="sub">· квартира с видом на горы</span></h2>
+    <p class="addr">проспект Сейфуллина 574/1, Алматы</p>
+    <div class="dist"><div class="dv"><b>691 м</b><span>по прямой до ORTAU</span></div>
+      <div class="dv"><b>~20 мин</b><span>пешком, ~1,5 км</span></div>
+      <div class="dv"><b>~3 мин</b><span>на машине, ~1,5 км</span></div></div>
+    <div class="mid"><div class="score"><b>9,7</b><span>Великолепно · 10 отзывов</span></div><div class="price"><div class="pv">$470</div><div class="pl">за 5 ночей, с налогами · ~$94/ночь</div><div class="pw"><s>$614</s> <span class="off">−23%</span> <span class="tag">Genius −10%</span></div></div></div>
+    
+    <ul class="chips"><li>50 м²</li><li>Двуспальная кровать + диван-кровать</li><li>Своя кухня</li><li>Балкон</li><li>Кондиционер</li><li>Телевизор</li><li>Wi-Fi</li><li>Бесплатная парковка</li><li>Вид на город</li></ul>
+    <ul class='terms'><li>Бесплатная отмена до 22 сентября 2026</li><li>Предоплата не требуется — оплата на месте</li></ul>
+    <ul class='cats'><li><span>Персонал</span><b>8,8</b></li><li><span>Удобства</span><b>9,2</b></li><li><span>Чистота</span><b>9,4</b></li><li><span>Комфорт</span><b>9,6</b></li><li><span>Цена/качество</span><b>9,6</b></li><li><span>Расположение</span><b>9,4</b></li></ul>
+    <div class="revs"><blockquote>«Хорошая квартира с уютной атмосферой. Всё аккуратно, чисто и продумано для гостей.»<cite>— Айдос, Казахстан</cite></blockquote></div>
+    <div class="cta"><a class="btn primary" href="https://www.booking.com/hotel/kz/central-avenue-zhiloi-kompleks.ru.html?aid=304142&amp;checkin=2026-09-23&amp;checkout=2026-09-28&amp;group_adults=1&amp;no_rooms=1&amp;group_children=0&amp;all_sr_blocks=1487667401_427430335_4_0_0&amp;highlighted_blocks=1487667401_427430335_4_0_0&amp;matching_block_id=1487667401_427430335_4_0_0" target="_blank" rel="noopener">Открыть на Booking.com</a>
+      <a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;origin=43.2302192096248,76.9382911907379&amp;destination=43.2364265,76.937795&amp;travelmode=walking" target="_blank" rel="noopener">Маршрут пешком до ORTAU</a></div>
+  </div>
+</article>
+<article class="card" id="alfarabi27" style="animation-delay:0.10s">
+  <div class="gal"><div class="track"><img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/892310571.jpg?k=65187fedd514d57da1a0a1001f0f48221f4bb0bddf179fb73b9d553caa2f68f2&amp;o=&amp;hp=1" alt="Аль фараби 27 #23 — фото 1" referrerpolicy="no-referrer" loading=eager decoding="async" onerror="this.style.display='none'"><img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/892310475.jpg?k=57f14f2a64c9c11f31192ee3664d3dd7cec3375394a8541a9d0366652ba30ff0&amp;o=&amp;hp=1" alt="Аль фараби 27 #23 — фото 2" referrerpolicy="no-referrer" loading=lazy decoding="async" onerror="this.style.display='none'"><img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/892310551.jpg?k=400ce4a0d3dd74b892cb728794ad5627ca9b0cad13452108f8e8955cb40cf38d&amp;o=&amp;hp=1" alt="Аль фараби 27 #23 — фото 3" referrerpolicy="no-referrer" loading=lazy decoding="async" onerror="this.style.display='none'"><img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/892310540.jpg?k=073f4d3e9b5f227e9a8415db34c52f34aa577a641488e8a4dafdad58787cbc28&amp;o=&amp;hp=1" alt="Аль фараби 27 #23 — фото 4" referrerpolicy="no-referrer" loading=lazy decoding="async" onerror="this.style.display='none'"><img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/892310568.jpg?k=cc3d00c1c4b25ffd51bebd3594c90c4836d09bc3c4ed1d8b9db7490171a355b6&amp;o=&amp;hp=1" alt="Аль фараби 27 #23 — фото 5" referrerpolicy="no-referrer" loading=lazy decoding="async" onerror="this.style.display='none'"><img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/892310477.jpg?k=5448dcb676c5f7e6fbc409dfa6475b25b4c95abf8095c608d3733c4c7ac5e404&amp;o=&amp;hp=1" alt="Аль фараби 27 #23 — фото 6" referrerpolicy="no-referrer" loading=lazy decoding="async" onerror="this.style.display='none'"><img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/892310528.jpg?k=e297dfa90c42994c088a1233d9e05b5ef8802dd91a5cc13a8b19d6066ddf4b1f&amp;o=&amp;hp=1" alt="Аль фараби 27 #23 — фото 7" referrerpolicy="no-referrer" loading=lazy decoding="async" onerror="this.style.display='none'"><img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/892310504.jpg?k=201cdddf912bcb04f0597d8c6cc0b2f2caba035ed074d011c202bda5ba59f140&amp;o=&amp;hp=1" alt="Аль фараби 27 #23 — фото 8" referrerpolicy="no-referrer" loading=lazy decoding="async" onerror="this.style.display='none'"></div>
+    <button class="nav prev" aria-label="Предыдущее фото" hidden>‹</button><button class="nav next" aria-label="Следующее фото" hidden>›</button>
+    <span class="cnt" hidden></span><span class="rank">№2 по близости</span></div>
+  <div class="body">
+    <h2>Аль фараби 27 #23</h2>
+    <p class="addr">проспект Аль-Фараби 27, Алматы</p>
+    <div class="dist"><div class="dv"><b>1,0 км</b><span>по прямой до ORTAU</span></div>
+      <div class="dv"><b>~20 мин</b><span>пешком, ~1,5 км</span></div>
+      <div class="dv"><b>~3 мин</b><span>на машине, ~1,8 км</span></div></div>
+    <div class="mid"><div class="score"><b>8,4</b><span>Очень хорошо · 5 отзывов</span></div><div class="price"><div class="pv">$388</div><div class="pl">за 5 ночей, с налогами · ~$78/ночь</div><div class="pw"><s>$614</s> <span class="off">−37%</span> <span class="tag">Genius −21%</span></div></div></div>
+    
+    <ul class="chips"><li>60 м²</li><li>Большая двуспальная кровать + диван-кровать</li><li>Своя кухня</li><li>Балкон</li><li>Кондиционер</li><li>Ванна</li><li>Телевизор</li><li>Wi-Fi</li><li>Бесплатная парковка</li><li>Вид на город</li></ul>
+    <ul class='terms'><li>Бесплатная отмена до 22 сентября 2026</li><li>Предоплата не требуется — оплата на месте</li></ul>
+    <ul class='cats'><li><span>Персонал</span><b>8,5</b></li><li><span>Удобства</span><b>8,5</b></li><li><span>Чистота</span><b>8,5</b></li><li><span>Комфорт</span><b>8,5</b></li><li><span>Цена/качество</span><b>8,5</b></li><li><span>Расположение</span><b>8,5</b></li></ul>
+    <div class="revs"><blockquote>«Место было очень хорошее, чистое и аккуратное, отличное расположение, очень удобно. Всё работало как положено, и за время пребывания не возникло никаких проблем.»<cite>— Giorgi, Грузия</cite></blockquote></div>
+    <div class="cta"><a class="btn primary" href="https://www.booking.com/hotel/kz/al-farabi-27-23.ru.html?aid=304142&amp;checkin=2026-09-23&amp;checkout=2026-09-28&amp;group_adults=1&amp;no_rooms=1&amp;group_children=0&amp;all_sr_blocks=1460888301_417385936_3_0_0&amp;highlighted_blocks=1460888301_417385936_3_0_0&amp;matching_block_id=1460888301_417385936_3_0_0" target="_blank" rel="noopener">Открыть на Booking.com</a>
+      <a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;origin=43.2275165444874,76.9401675034922&amp;destination=43.2364265,76.937795&amp;travelmode=walking" target="_blank" rel="noopener">Маршрут пешком до ORTAU</a></div>
+  </div>
+</article>
+<article class="card" id="smartlux" style="animation-delay:0.15s">
+  <div class="gal"><div class="track"><img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/806262590.jpg?k=157beb5a7db0ad3f3930f2e7a8592671fdf576a2e171a07f9b012c4e89fffc16&amp;o=&amp;hp=1" alt="Smart Lux 320 — фото 1" referrerpolicy="no-referrer" loading=eager decoding="async" onerror="this.style.display='none'"><img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/806262614.jpg?k=123c0ca6efbec9a4859a8b87b8113750126287cba6f2c21ba908404d3f4de446&amp;o=&amp;hp=1" alt="Smart Lux 320 — фото 2" referrerpolicy="no-referrer" loading=lazy decoding="async" onerror="this.style.display='none'"><img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/806262692.jpg?k=518299737c45f4defc3efe724ee3245643f6eaff524fea04d19967dff7db4c21&amp;o=&amp;hp=1" alt="Smart Lux 320 — фото 3" referrerpolicy="no-referrer" loading=lazy decoding="async" onerror="this.style.display='none'"><img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/806262633.jpg?k=bf72c61423bbc933ee6578427af98b5370bf96473b6c832124011193c96df770&amp;o=&amp;hp=1" alt="Smart Lux 320 — фото 4" referrerpolicy="no-referrer" loading=lazy decoding="async" onerror="this.style.display='none'"><img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/806262587.jpg?k=3e2a4e0a1b915ca3b6440632b3a20df526afd8b76c045f4a61bed8633b01ad05&amp;o=&amp;hp=1" alt="Smart Lux 320 — фото 5" referrerpolicy="no-referrer" loading=lazy decoding="async" onerror="this.style.display='none'"><img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/806262661.jpg?k=0e3de1a30725955df1468a39232f5b6d5a20a7ac7030632fd8fd663e99ab55d7&amp;o=&amp;hp=1" alt="Smart Lux 320 — фото 6" referrerpolicy="no-referrer" loading=lazy decoding="async" onerror="this.style.display='none'"><img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/806262598.jpg?k=e2e0a62df2796a39ee2df34efb11aed8fbb550f6a145454f7fbc93e337051535&amp;o=&amp;hp=1" alt="Smart Lux 320 — фото 7" referrerpolicy="no-referrer" loading=lazy decoding="async" onerror="this.style.display='none'"><img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/806262728.jpg?k=8bc48711975c2d246ee3e62775ad4fa3014cd81b6486e4a23d4e14c18754462c&amp;o=&amp;hp=1" alt="Smart Lux 320 — фото 8" referrerpolicy="no-referrer" loading=lazy decoding="async" onerror="this.style.display='none'"></div>
+    <button class="nav prev" aria-label="Предыдущее фото" hidden>‹</button><button class="nav next" aria-label="Следующее фото" hidden>›</button>
+    <span class="cnt" hidden></span><span class="rank">№3 по близости</span></div>
+  <div class="body">
+    <h2>Smart Lux 320 <span class="sub">· ЖК «Нурлы Тау»</span></h2>
+    <p class="addr">проспект Аль-Фараби 7к5а, Алматы</p>
+    <div class="dist"><div class="dv"><b>1,0 км</b><span>по прямой до ORTAU</span></div>
+      <div class="dv"><b>~25 мин</b><span>пешком, ~1,9 км</span></div>
+      <div class="dv"><b>~4 мин</b><span>на машине, ~2,0 км</span></div></div>
+    <div class="mid"><div class="score"><b>10</b><span>Великолепно · 2 отзыва</span></div><div class="price nop"><div class="pv">цена уточняется</div><div class="pl">Booking не показал цену на даты 23–28.09 — нужна проверка по ссылке</div></div></div>
+    
+    <ul class="chips"><li>100 м²</li><li>Своя кухня</li><li>Вид на город</li><li>Жильё целиком</li></ul>
+    
+    <ul class='cats'><li><span>Персонал</span><b>10</b></li><li><span>Удобства</span><b>10</b></li><li><span>Чистота</span><b>10</b></li><li><span>Комфорт</span><b>10</b></li><li><span>Цена/качество</span><b>10</b></li><li><span>Расположение</span><b>10</b></li></ul>
+    <div class="revs"><p class="muted">Текстовых отзывов на странице нет — только оценка (2 отзыва).</p></div>
+    <div class="cta"><a class="btn primary" href="https://www.booking.com/hotel/kz/smart-lux-320.ru.html?aid=304142&amp;checkin=2026-09-23&amp;checkout=2026-09-28&amp;group_adults=1&amp;no_rooms=1&amp;group_children=0&amp;all_sr_blocks=1561031301_427196015_2_0_0&amp;highlighted_blocks=1561031301_427196015_2_0_0&amp;matching_block_id=1561031301_427196015_2_0_0" target="_blank" rel="noopener">Открыть на Booking.com</a>
+      <a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;origin=43.23014819916744,76.9469301094856&amp;destination=43.2364265,76.937795&amp;travelmode=walking" target="_blank" rel="noopener">Маршрут пешком до ORTAU</a></div>
+  </div>
+</article>
+<article class="card" id="metropole" style="animation-delay:0.20s">
+  <div class="gal"><div class="track"><img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/919677996.jpg?k=20a5f672bf4f4e3c0896b277fe1ae2daed3040cfae82896146c4dd88514f1c90&amp;o=&amp;hp=1" alt="Stay Almaty Metropole — фото 1" referrerpolicy="no-referrer" loading=eager decoding="async" onerror="this.style.display='none'"><img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/919677524.jpg?k=27101322478775d7a1b63de569f0681b634372a103d1280fa4f673256e094ccc&amp;o=&amp;hp=1" alt="Stay Almaty Metropole — фото 2" referrerpolicy="no-referrer" loading=lazy decoding="async" onerror="this.style.display='none'"><img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/919678164.jpg?k=baac4f3f416fe7353b25dde92a7180581e6a8576ba0f466d3dee359e2dabe484&amp;o=&amp;hp=1" alt="Stay Almaty Metropole — фото 3" referrerpolicy="no-referrer" loading=lazy decoding="async" onerror="this.style.display='none'"><img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/919678540.jpg?k=d28c56e5317194efe10fa0372cb9c18786dc2fb09bf2b4e4dc1b0e1840f7008f&amp;o=&amp;hp=1" alt="Stay Almaty Metropole — фото 4" referrerpolicy="no-referrer" loading=lazy decoding="async" onerror="this.style.display='none'"><img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/919677859.jpg?k=ee9c0f3cc6251a8514428ef91648f95af31e948dec2e8c9888f0ec78d5ccdc99&amp;o=&amp;hp=1" alt="Stay Almaty Metropole — фото 5" referrerpolicy="no-referrer" loading=lazy decoding="async" onerror="this.style.display='none'"><img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/919678270.jpg?k=97c5b4260899033ea566c0558b18722e080bf43fae68c97a0d4d9c01deab754c&amp;o=&amp;hp=1" alt="Stay Almaty Metropole — фото 6" referrerpolicy="no-referrer" loading=lazy decoding="async" onerror="this.style.display='none'"><img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/919678698.jpg?k=a342f75e68cc5f669a9a4341785538d6b3cca191b73c13f88f4e99c6d631e779&amp;o=&amp;hp=1" alt="Stay Almaty Metropole — фото 7" referrerpolicy="no-referrer" loading=lazy decoding="async" onerror="this.style.display='none'"><img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/919677181.jpg?k=80482eeeef39dbaf547697e1787ae9e17377b738d60b8e2c7330d195561ca5d5&amp;o=&amp;hp=1" alt="Stay Almaty Metropole — фото 8" referrerpolicy="no-referrer" loading=lazy decoding="async" onerror="this.style.display='none'"></div>
+    <button class="nav prev" aria-label="Предыдущее фото" hidden>‹</button><button class="nav next" aria-label="Следующее фото" hidden>›</button>
+    <span class="cnt" hidden></span><span class="rank">№4 по близости</span></div>
+  <div class="body">
+    <h2>Stay Almaty Metropole</h2>
+    <p class="addr">проспект Аль-Фараби 41/7, кв. 14, Алматы</p>
+    <div class="dist"><div class="dv"><b>1,1 км</b><span>по прямой до ORTAU</span></div>
+      <div class="dv"><b>~22 мин</b><span>пешком, ~1,6 км</span></div>
+      <div class="dv"><b>~5 мин</b><span>на машине, ~3,4 км</span></div></div>
+    <div class="mid"><div class="score"><b>9,5</b><span>Великолепно · 2 отзыва</span></div><div class="price nop"><div class="pv">цена уточняется</div><div class="pl">Booking не показал цену на даты 23–28.09 — нужна проверка по ссылке</div></div></div>
+    
+    <ul class="chips"><li>83 м²</li><li>Жильё целиком</li><li>Парковка</li></ul>
+    
+    <ul class='cats'><li><span>Удобства</span><b>10</b></li><li><span>Чистота</span><b>10</b></li><li><span>Комфорт</span><b>10</b></li><li><span>Цена/качество</span><b>10</b></li><li><span>Расположение</span><b>10</b></li></ul>
+    <div class="revs"><blockquote>«Квартира чистая, уютная, со всеми условиями проживания. Хозяин квартиры очень приятный, доброжелательный молодой человек.»<cite>— Жамийла, Россия</cite></blockquote><blockquote>«Begzat met us at the door. He has great English, very hospitable. It&#x27;s the most beautiful apartment we&#x27;ve stayed in in Almaty. Only two months old but with quality finishes. Beautiful carpentry, tiling, flooring. Very clean and crisp....»<cite>— David, Казахстан (на англ.)</cite></blockquote></div>
+    <div class="cta"><a class="btn primary" href="https://www.booking.com/hotel/kz/stay-almaty-metropole.ru.html?aid=304142&amp;checkin=2026-09-23&amp;checkout=2026-09-28&amp;group_adults=1&amp;no_rooms=1&amp;group_children=0&amp;all_sr_blocks=1706125401_442246839_5_0_0&amp;highlighted_blocks=1706125401_442246839_5_0_0&amp;matching_block_id=1706125401_442246839_5_0_0" target="_blank" rel="noopener">Открыть на Booking.com</a>
+      <a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;origin=43.2263132,76.939326&amp;destination=43.2364265,76.937795&amp;travelmode=walking" target="_blank" rel="noopener">Маршрут пешком до ORTAU</a></div>
+  </div>
+</article>
+<article class="card" id="orion" style="animation-delay:0.25s">
+  <div class="gal"><div class="track"><img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/825928529.jpg?k=9fd2bad43440c5b9f08b991f23dfda21daa1eb5738730c0c68ca7647e0d8de37&amp;o=&amp;hp=1" alt="Home Comfort Orion — фото 1" referrerpolicy="no-referrer" loading=eager decoding="async" onerror="this.style.display='none'"><img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/825928670.jpg?k=7fa1655b59de059880bef89de8381af0194d1ce18618d9f107eb386f22ed4675&amp;o=&amp;hp=1" alt="Home Comfort Orion — фото 2" referrerpolicy="no-referrer" loading=lazy decoding="async" onerror="this.style.display='none'"><img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/825928452.jpg?k=4a4e1f6a6c0b1133bc72cdacccf0b20a1d26e3b3f890afd29f2792349a858e1d&amp;o=&amp;hp=1" alt="Home Comfort Orion — фото 3" referrerpolicy="no-referrer" loading=lazy decoding="async" onerror="this.style.display='none'"><img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/825928753.jpg?k=5af810987179b3e775f0ebe5607ca9fd956ddfe6984da3a621e511904d861d5b&amp;o=&amp;hp=1" alt="Home Comfort Orion — фото 4" referrerpolicy="no-referrer" loading=lazy decoding="async" onerror="this.style.display='none'"><img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/825928358.jpg?k=4714c11ebd1e5f7fb84b5e9b61171ee1fdd0490e49276c856d57f50fe4f05b28&amp;o=&amp;hp=1" alt="Home Comfort Orion — фото 5" referrerpolicy="no-referrer" loading=lazy decoding="async" onerror="this.style.display='none'"><img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/825928888.jpg?k=3b090977e537faf83511f5d86769258ac237d83585c896edb41308f17195ccd1&amp;o=&amp;hp=1" alt="Home Comfort Orion — фото 6" referrerpolicy="no-referrer" loading=lazy decoding="async" onerror="this.style.display='none'"><img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/771430312.jpg?k=352fecf83b112a0712a2617ea290512d9c9f7b5a08716e53155a09d55956218e&amp;o=&amp;hp=1" alt="Home Comfort Orion — фото 7" referrerpolicy="no-referrer" loading=lazy decoding="async" onerror="this.style.display='none'"><img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/771429384.jpg?k=7e4837f1e97f59c5be206ab6e3a93174565126ae0ed18e448149499f0e32c584&amp;o=&amp;hp=1" alt="Home Comfort Orion — фото 8" referrerpolicy="no-referrer" loading=lazy decoding="async" onerror="this.style.display='none'"></div>
+    <button class="nav prev" aria-label="Предыдущее фото" hidden>‹</button><button class="nav next" aria-label="Следующее фото" hidden>›</button>
+    <span class="cnt" hidden></span><span class="rank">№5 по близости</span></div>
+  <div class="body">
+    <h2>Home Comfort Orion</h2>
+    <p class="addr">проспект Назарбаева 235Б, Алматы</p>
+    <div class="dist"><div class="dv"><b>1,2 км</b><span>по прямой до ORTAU</span></div>
+      <div class="dv"><b>~24 мин</b><span>пешком, ~1,8 км</span></div>
+      <div class="dv"><b>~5 мин</b><span>на машине, ~2,5 км</span></div></div>
+    <div class="mid"><div class="score"><b>10</b><span>Великолепно · 1 отзыв</span></div><div class="price"><div class="pv">$403</div><div class="pl">за 5 ночей, с налогами · ~$81/ночь</div><div class="pw"> </div></div></div>
+    <p class="warn">⚠ Бронирование не подтверждается мгновенно: хозяин отвечает в течение 24 часов. Booking пишет, что обычно здесь нет мест.</p>
+    <ul class="chips"><li>65 м²</li><li>Двуспальная кровать + диван-кровать</li><li>Своя кухня</li><li>Балкон</li><li>Кондиционер</li><li>Телевизор</li><li>Стиральная машина</li><li>Wi-Fi</li><li>Бесплатная парковка</li><li>Вид на горы и город</li><li>Звукоизоляция</li></ul>
+    <ul class='terms'><li>Бесплатная отмена до 22 сентября 2026</li><li>Предоплата не требуется, банковская карта не нужна</li></ul>
+    
+    <div class="revs"><p class="muted">Текстовых отзывов на странице нет — только оценка (1 отзыв).</p></div>
+    <div class="cta"><a class="btn primary" href="https://www.booking.com/hotel/kz/liuks-apartamenty-v-zhk-zher-ana.ru.html?aid=304142&amp;checkin=2026-09-23&amp;checkout=2026-09-28&amp;group_adults=1&amp;no_rooms=1&amp;group_children=0&amp;all_sr_blocks=1320527001_404758007_2_0_0&amp;highlighted_blocks=1320527001_404758007_2_0_0&amp;matching_block_id=1320527001_404758007_2_0_0" target="_blank" rel="noopener">Открыть на Booking.com</a>
+      <a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;origin=43.2301848685788,76.9491433762883&amp;destination=43.2364265,76.937795&amp;travelmode=walking" target="_blank" rel="noopener">Маршрут пешком до ORTAU</a></div>
+  </div>
+</article>
+</div>
+
+<div class="stickerrow"><img class="sticker" id="cat" src="img/cat.png" width="112" height="140" alt="Смешной котик"></div>
+
+<section class="notes">
+  <h4>Как посчитано и откуда данные</h4>
+  <ul>
+    <li><b>Цены, рейтинги, отзывы, условия</b> — со страниц Booking.com на 19.09.2026 (цены показаны Booking в USD, за 5 ночей, 1 взрослый, с налогами и сборами). Цены и наличие меняются — перед бронью проверьте по кнопке «Открыть на Booking.com».</li>
+    <li><b>У Smart Lux 320 и Stay Almaty Metropole цена не получена</b> — не показывается без открытия страницы в браузере; будет добавлена, когда пришлёте скриншот или проверите по ссылке.</li>
+    <li><b>«По прямой»</b> — расчёт по формуле гаверсинуса между координатами объекта (из карты Booking) и ORTAU (127 Наурызбай батыра по OpenStreetMap). Это самая надёжная цифра.</li>
+    <li><b>«Пешком» и «на машине»</b> — приблизительный маршрут по OpenStreetMap (OSRM, routing.openstreetmap.de). Реальный путь может отличаться: закрытые дворы, шлагбаумы, одностороннее движение, светофоры. Нажмите «Маршрут пешком», чтобы увидеть путь в Google Maps.</li>
+    <li>У объектов с 1–2 отзывами оценка статистически слабая: 10 из 10 по одному отзыву — не то же самое, что 9,7 по десяти.</li>
+    <li>Фото — с Booking.com (принадлежат владельцам объектов). Котик — CC0, Wikimedia Commons, «Cat got flash bang».</li>
+  </ul>
+</section>
+</div>
+
+<script>
+/* необязательные улучшения: страница полностью видима и без скриптов */
+(function(){
+  document.querySelectorAll('.gal').forEach(function(g){
+    var t=g.querySelector('.track'), imgs=t.querySelectorAll('img'), c=g.querySelector('.cnt');
+    var p=g.querySelector('.prev'), n=g.querySelector('.next');
+    if(imgs.length<2) return;
+    [p,n,c].forEach(function(e){e.hidden=false});
+    function idx(){return Math.round(t.scrollLeft/t.clientWidth)}
+    function upd(){c.textContent=(idx()+1)+' / '+imgs.length}
+    t.addEventListener('scroll',upd,{passive:true}); upd();
+    p.addEventListener('click',function(){t.scrollBy({left:-t.clientWidth,behavior:'smooth'})});
+    n.addEventListener('click',function(){t.scrollBy({left:t.clientWidth,behavior:'smooth'})});
+  });
+})();
+(async function(){
+  try{
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var m = await import('https://cdn.jsdelivr.net/npm/motion@11/+esm');
+    var animate=m.animate;
+    document.querySelectorAll('.card').forEach(function(el){
+      el.addEventListener('pointerenter',function(){animate(el,{y:-3},{duration:.2})});
+      el.addEventListener('pointerleave',function(){animate(el,{y:0},{duration:.25})});
+    });
+    document.querySelectorAll('.btn').forEach(function(b){
+      b.addEventListener('pointerdown',function(){animate(b,{scale:.97},{duration:.1})});
+      ['pointerup','pointerleave'].forEach(function(ev){b.addEventListener(ev,function(){animate(b,{scale:1},{duration:.15})})});
+    });
+    var cat=document.getElementById('cat');
+    if(cat){ cat.style.pointerEvents='auto';
+      cat.addEventListener('pointerenter',function(){animate(cat,{rotate:[7,-4,10,7]},{duration:.6})});
+      cat.addEventListener('pointerdown',function(){animate(cat,{rotate:[7,-8,14,7],scale:[1,1.1,1]},{duration:.5})}); }
+  }catch(e){}
+})();
+</script>
+</body>
+</html>
