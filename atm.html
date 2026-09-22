@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark light">
+<title>Банкоматы рядом с ORTAU — снять наличные с карты Freedom Bank</title>
+<meta name="description" content="Ближайшие банкоматы Freedom Bank и других банков (принимают карту Freedom) рядом с ЖК Ortau, Наурызбай батыра 127. Плюс маршрут к банкомату Freedom Bank в аэропорту Алматы.">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+:root{
+  --bg:#0b0b0d; --card:#161618; --card2:#1d1d20; --ink:#f5f5f7; --mut:#a1a1a6; --line:#2a2a2e;
+  --acc:#4da3ff; --accInk:#06131f; --ok:#5ad38a; --warn:#ffb340; --ort:#ff7a45; --shadow:0 10px 30px rgba(0,0,0,.35);
+}
+@media (prefers-color-scheme: light){
+  :root{ --bg:#f5f5f7; --card:#ffffff; --card2:#f2f2f5; --ink:#1d1d1f; --mut:#6e6e73; --line:#e2e2e7;
+    --acc:#0071e3; --accInk:#fff; --ok:#1e8e4e; --warn:#b26a00; --ort:#e2531c; --shadow:0 10px 30px rgba(0,0,0,.08); }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px 64px;position:relative}
+header{padding:44px 0 20px}
+.eyebrow{color:var(--mut);font-size:14px;letter-spacing:.02em}
+h1{font-size:clamp(30px,6vw,48px);line-height:1.05;letter-spacing:-.03em;margin:8px 0 12px;font-weight:700}
+.lead{color:var(--mut);font-size:18px;margin:0;max-width:680px}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 0;padding:0;list-style:none}
+.facts li{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:14px}
+h2.sec{font-size:24px;letter-spacing:-.02em;margin:44px 0 14px;display:flex;align-items:center;gap:10px}
+.tag{font-size:12px;font-weight:700;padding:3px 9px;border-radius:999px;text-transform:uppercase;letter-spacing:.04em}
+.tag.own{background:rgba(90,211,138,.15);color:var(--ok)}
+.tag.other{background:rgba(255,179,64,.16);color:var(--warn)}
+.tag.h24{background:rgba(77,163,255,.16);color:var(--acc)}
+
+/* карта */
+.mapbox{background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--shadow)}
+#map{width:100%;height:440px;background:var(--card2)}
+.legend{display:flex;flex-wrap:wrap;gap:14px;padding:14px 18px;border-top:1px solid var(--line);font-size:13px;color:var(--mut)}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.dotL{width:12px;height:12px;border-radius:50%;display:inline-block;border:2px solid #fff}
+.cap{color:var(--mut);font-size:13px;margin:10px 4px 2px}
+
+/* карточки банкоматов */
+.cards{display:grid;gap:16px;grid-template-columns:1fr}
+@media (min-width:720px){.cards{grid-template-columns:1fr 1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px}
+.card.wide{grid-column:1/-1}
+.card h3{margin:0;font-size:19px;letter-spacing:-.01em;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.card .addr{color:var(--ink);font-weight:600;margin:0}
+.card .meta{color:var(--mut);font-size:14px;margin:0}
+.stats{display:flex;gap:8px;flex-wrap:wrap}
+.stat{background:var(--card2);border-radius:12px;padding:8px 12px;font-size:13px}
+.stat b{display:block;font-size:16px;letter-spacing:-.01em}
+.note{font-size:13px;color:var(--mut);border-left:3px solid var(--line);padding-left:10px}
+.card a.src{font-size:12px;color:var(--acc);text-decoration:none}
+.card a.src:hover{text-decoration:underline}
+
+/* маршрут по шагам */
+.steps{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:8px 20px;box-shadow:var(--shadow)}
+.steps ol{margin:0;padding:14px 0 14px 20px}
+.steps li{padding:8px 0;border-bottom:1px solid var(--line)}
+.steps li:last-child{border-bottom:0}
+.steps b{font-weight:600}
+
+.airport{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:var(--shadow)}
+.airport ol{margin:10px 0 0;padding-left:20px}
+.airport li{padding:6px 0}
+
+footer{margin-top:56px;color:var(--mut);font-size:13px;line-height:1.7}
+footer a{color:var(--acc)}
+
+.sticker{position:absolute;width:100px;height:auto;pointer-events:none;user-select:none;z-index:5}
+.sticker.s1{top:-6px;right:-6px;transform:rotate(9deg)}
+@media (max-width:600px){.sticker.s1{width:76px;top:2px;right:2px}}
+
+@keyframes fadeInUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.fx{opacity:0}
+@media (prefers-reduced-motion: reduce){.fx{opacity:1!important;transform:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="fx" style="position:relative">
+    <img class="sticker s1" src="img/cat.png" width="100" height="125" alt="Смешной котик" loading="lazy">
+    <p class="eyebrow">ЖК Ortau · ул. Наурызбай батыра, 127, блок 3 · Алматы</p>
+    <h1>Где снять наличные с карты Freedom Bank</h1>
+    <p class="lead">Ближайшие банкоматы — свои (Freedom Bank, без комиссии) и чужие (принимают карту Freedom как обычную Visa/Mastercard, с межбанковской комиссией). Плюс маршрут к банкомату Freedom Bank в аэропорту Алматы по прилёту.</p>
+    <ul class="facts">
+      <li>🏠 Дом: Наурызбай батыра, 127, блок 3</li>
+      <li>🟢 Свой банкомат Freedom — 10:00–22:00, ~14 мин пешком</li>
+      <li>🔵 Круглосуточный (другой банк) — ~5 мин на машине</li>
+    </ul>
+  </header>
+
+  <h2 class="sec fx">Карта: дом и ближайшие банкоматы</h2>
+  <div class="mapbox fx">
+    <div id="map"></div>
+    <div class="legend">
+      <span><i class="dotL" style="background:var(--ort)"></i> Дом (Ortau)</span>
+      <span><i class="dotL" style="background:var(--ok)"></i> Freedom Bank — свой банкомат</span>
+      <span><i class="dotL" style="background:var(--warn)"></i> Другой банк, но карту Freedom принимает</span>
+    </div>
+  </div>
+  <p class="cap">Оранжевая линия — пеший маршрут до Freedom Bank в ТРЦ Forum Almaty. Синяя линия — маршрут на машине/такси до круглосуточного банкомата Kaspi.</p>
+
+  <h2 class="sec fx"><span class="tag own">Freedom Bank</span> ближайший, без комиссии</h2>
+  <div class="cards fx">
+    <div class="card wide">
+      <h3>ТРЦ Forum Almaty <span class="tag own">Freedom Bank</span></h3>
+      <p class="addr">просп. Сейфуллина, 617, 5-й этаж</p>
+      <p class="meta">Часы — по режиму ТРЦ: ежедневно 10:00–22:00 (не круглосуточно)</p>
+      <div class="stats">
+        <div class="stat"><b>~1,1 км</b>пешком</div>
+        <div class="stat"><b>~14 мин</b>в пути пешком</div>
+        <div class="stat"><b>0</b>комиссии — свой банк</div>
+      </div>
+      <p class="note">Это единственный подтверждённый банкомат именно Freedom Bank в пешей доступности от дома. Ночью (после 22:00) он недоступен — ТРЦ закрыт.</p>
+      <a class="src" href="https://yandex.kz/maps/ru/162/almaty/chain/freedom_bank_atms/159422342078/" target="_blank" rel="noopener">Источник: Яндекс Карты, сеть банкоматов Freedom Bank →</a>
+    </div>
+  </div>
+
+  <h2 class="sec fx">Пеший маршрут до Freedom Bank (Forum Almaty)</h2>
+  <div class="steps fx">
+    <ol>
+      <li>Выйти из дома (Наурызбай батыра, 127, блок 3) и повернуть <b>налево</b> — 80 м.</li>
+      <li>На улице <b>Наурызбай батыра</b> повернуть <b>направо</b> и идти прямо — 285 м.</li>
+      <li>Повернуть <b>направо</b> на улицу <b>Тимирязева</b> и идти прямо — 370 м.</li>
+      <li>Дальше маршрут уходит дворами к улице <b>Никитина</b>, затем направо, ко входу в ТРЦ <b>Forum Almaty</b> — ещё ~350 м.</li>
+      <li>Внутри — на <b>5-й этаж</b>, банкомат Freedom Bank.</li>
+    </ol>
+  </div>
+
+  <h2 class="sec fx"><span class="tag h24">24/7</span> если Forum уже закрыт (ночью)</h2>
+  <div class="cards fx">
+    <div class="card">
+      <h3>Kaspi Bank <span class="tag other">другой банк</span> <span class="tag h24">круглосуточно</span></h3>
+      <p class="addr">ул. Тимирязева, 40</p>
+      <p class="meta">Режим работы: круглосуточно</p>
+      <div class="stats">
+        <div class="stat"><b>~3,3 км</b>по прямой улице Тимирязева</div>
+        <div class="stat"><b>~5 мин</b>на машине/такси</div>
+      </div>
+      <p class="note">Карту Freedom Bank примет как обычную карту Visa/Mastercard — спишется межбанковская комиссия за снятие в чужом банкомате (точный размер — в приложении Freedom Bank перед снятием).</p>
+      <a class="src" href="https://2gis.kz/almaty/firm/70000001025046805" target="_blank" rel="noopener">Источник: 2ГИС →</a>
+    </div>
+    <div class="card">
+      <h3>Bank CenterCredit <span class="tag other">другой банк</span> <span class="tag h24">круглосуточно</span></h3>
+      <p class="addr">ул. Айтеке би, 83 (между Желтоксан и Наурызбай батыра)</p>
+      <p class="meta">Режим работы: круглосуточно</p>
+      <div class="stats">
+        <div class="stat"><b>~2,4 км</b>по прямой</div>
+      </div>
+      <p class="note">Запасной вариант в другую сторону от дома — если удобнее ехать в центр, а не по Тимирязева.</p>
+    </div>
+    <div class="card wide">
+      <h3>Magnum Cash & Carry <span class="tag own">Freedom Bank</span> <span class="tag h24">круглосуточно</span></h3>
+      <p class="addr">мкр. Жетысу-3, 1г (супермаркет)</p>
+      <p class="meta">Это единственный подтверждённый круглосуточный банкомат именно Freedom Bank в Алматы — но он далеко от Ortau (другой конец города), ехать туда специально ради нулевой комиссии смысла обычно нет.</p>
+    </div>
+  </div>
+
+  <h2 class="sec fx">В аэропорту Алматы: как найти банкомат Freedom Bank по прилёту</h2>
+  <div class="airport fx">
+    <p class="meta" style="margin:0">Банкомат Freedom Bank в аэропорту зарегистрирован по адресу <b>ул. Майлина, 2</b> (территория аэропорта). Банкоматы и пункты обмена валют в терминале расположены на обоих этажах, в зоне прилёта.</p>
+    <ol>
+      <li>После посадки идите по указателям <b>Baggage Claim / Выход в город</b> (зал прилёта).</li>
+      <li>Пройдите паспортный контроль и получите багаж.</li>
+      <li>Перед выходом из зала прилёта на улицу — по обеим стенам зала стойки обмена валют и ряд банкоматов разных банков (Freedom Bank, Bereke Bank, Jusan Bank, Bank CenterCredit, ForteBank, Nur Bank).</li>
+      <li>Банкомат Freedom Bank ищите в этом ряду — обычно рядом с логотипами других банков, на 1-м этаже.</li>
+      <li>Если не видно сразу — обратитесь на стойку <b>Information Desk</b> в зале прилёта, подскажут точное место.</li>
+    </ol>
+  </div>
+
+  <footer class="fx">
+    <p>Проверено: 22.09.2026, по данным <a href="https://2gis.kz" target="_blank" rel="noopener">2ГИС</a>, <a href="https://yandex.kz/maps" target="_blank" rel="noopener">Яндекс Карт</a> и открытых данных OpenStreetMap. Часы работы и наличие банкоматов могут меняться — если банкомат недоступен на месте, ищите ближайший работающий по вывеске банка рядом.</p>
+  </footer>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script type="module">
+import { animate, inView } from "https://cdn.jsdelivr.net/npm/motion@11/+esm";
+document.querySelectorAll(".fx").forEach((el)=>{
+  inView(el, ()=>{ animate(el, {opacity:[0,1], y:[16,0]}, {duration:.6, easing:[.22,1,.36,1]}); }, {margin:"0px 0px -10% 0px"});
+});
+</script>
+<script>
+const home=[43.236427,76.937795];
+const forum=[43.233773,76.935257];
+const kaspi=[43.225706,76.906891];
+const cc=[43.257966,76.937401];
+
+const map=L.map('map',{scrollWheelZoom:false}).setView(home,14);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+  maxZoom:19, attribution:'&copy; OpenStreetMap contributors'
+}).addTo(map);
+
+function pin(color){
+  return L.divIcon({className:'',html:`<div style="width:18px;height:18px;border-radius:50% 50% 50% 0;background:${color};border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.4);transform:rotate(-45deg)"></div>`,iconSize:[18,18],iconAnchor:[9,18]});
+}
+
+L.marker(home,{icon:pin('#ff7a45')}).addTo(map).bindPopup('<b>Дом — ЖК Ortau</b><br>Наурызбай батыра, 127, блок 3');
+L.marker(forum,{icon:pin('#5ad38a')}).addTo(map).bindPopup('<b>Freedom Bank</b><br>ТРЦ Forum Almaty, просп. Сейфуллина 617, 5 этаж<br>10:00–22:00');
+L.marker(kaspi,{icon:pin('#ffb340')}).addTo(map).bindPopup('<b>Kaspi Bank (круглосуточно)</b><br>ул. Тимирязева, 40');
+L.marker(cc,{icon:pin('#ffb340')}).addTo(map).bindPopup('<b>Bank CenterCredit (круглосуточно)</b><br>ул. Айтеке би, 83');
+
+const walkRoute=[[43.236187,76.937828],[43.236236,76.938491],[43.236249,76.938655],[43.236261,76.938823],[43.236179,76.93886],[43.235976,76.93888],[43.235828,76.938894],[43.235278,76.938958],[43.234762,76.939017],[43.234441,76.939057],[43.234086,76.939102],[43.233869,76.939131],[43.233771,76.939143],[43.233719,76.939186],[43.233444,76.938692],[43.233373,76.938532],[43.233232,76.938217],[43.232802,76.937172],[43.232664,76.936796],[43.232412,76.936112],[43.232265,76.935781],[43.232055,76.935395],[43.232012,76.935328],[43.232171,76.9353],[43.232478,76.935217],[43.23259,76.935185],[43.232779,76.935141],[43.233022,76.934759],[43.233581,76.934002],[43.233703,76.933853],[43.234321,76.934719],[43.23427,76.934796],[43.234233,76.934842],[43.234217,76.934863]];
+L.polyline(walkRoute,{color:'#ff7a45',weight:4,opacity:.85}).addTo(map);
+
+const driveRoute=[[43.236187,76.937828],[43.236236,76.938491],[43.236249,76.938655],[43.236261,76.938823],[43.236179,76.93886],[43.235976,76.93888],[43.235828,76.938894],[43.235278,76.938958],[43.234762,76.939017],[43.234441,76.939057],[43.234086,76.939102],[43.233869,76.939131],[43.233771,76.939143],[43.233719,76.939186],[43.233444,76.938692],[43.233373,76.938532],[43.233232,76.938217],[43.232802,76.937172],[43.232664,76.936796],[43.232412,76.936112],[43.232265,76.935781],[43.232055,76.935395],[43.232012,76.935328],[43.231902,76.93516],[43.231528,76.934641],[43.231465,76.934549],[43.231371,76.934413],[43.231239,76.934219],[43.231141,76.933983],[43.231071,76.933864],[43.230951,76.933726],[43.230815,76.933571],[43.230583,76.933416],[43.230572,76.933403],[43.230423,76.933215],[43.230255,76.932999],[43.230192,76.932914],[43.229742,76.932287],[43.229617,76.932113],[43.229298,76.931653],[43.229217,76.931533],[43.229125,76.931405],[43.228796,76.930951],[43.228433,76.930437],[43.228252,76.930167],[43.22816,76.929851],[43.227901,76.929502],[43.227713,76.929396],[43.227331,76.928868],[43.226931,76.928292],[43.22688,76.92817],[43.226846,76.927996],[43.226814,76.927731],[43.226814,76.924983],[43.226814,76.924925],[43.226814,76.92481],[43.226813,76.924789],[43.226814,76.924426],[43.226816,76.924185],[43.226876,76.923904],[43.226874,76.92371],[43.226877,76.923422],[43.226881,76.923096],[43.226882,76.922997],[43.226815,76.922599],[43.226813,76.922463],[43.226812,76.922209],[43.226802,76.920844],[43.226801,76.920342],[43.22679,76.920019],[43.226763,76.919334],[43.226722,76.918595],[43.226607,76.917016],[43.226537,76.915877],[43.22653,76.915755],[43.226521,76.915614],[43.226501,76.915275],[43.226552,76.914973],[43.226541,76.91484],[43.226504,76.9144],[43.226493,76.914288],[43.226406,76.914003],[43.226362,76.913347],[43.22635,76.913163],[43.226269,76.911987],[43.226239,76.911477],[43.226195,76.910875],[43.22617,76.910534],[43.226162,76.910419],[43.226157,76.910347],[43.22615,76.910259],[43.226144,76.910178],[43.226124,76.909901],[43.226094,76.909493],[43.226077,76.909239],[43.225992,76.908111],[43.225943,76.907445],[43.225918,76.907006],[43.225908,76.906871]];
+L.polyline(driveRoute,{color:'#4da3ff',weight:4,opacity:.85,dashArray:'2 8'}).addTo(map);
+
+const grp=L.featureGroup([...map._layers].filter(()=>true));
+map.fitBounds(L.latLngBounds([home,forum,kaspi,cc]),{padding:[30,30]});
+</script>
+</body>
+</html>
