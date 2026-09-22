@@ -97,7 +97,7 @@ footer a{color:var(--acc)}
   <div class="mapbox fx">
     <div id="map"></div>
     <div class="legend">
-      <span><i class="dotL" style="background:var(--ort)"></i> Дом (Ortau)</span>
+      <span><i class="dotL" style="background:var(--ort);width:16px;height:16px"></i> Дом (Ortau) — крупная метка 🏠</span>
       <span><i class="dotL" style="background:var(--warn)"></i> Другой банк, круглосуточно, карту Freedom принимает</span>
     </div>
   </div>
@@ -191,10 +191,18 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
 function pin(color){
   return L.divIcon({className:'',html:`<div style="width:18px;height:18px;border-radius:50% 50% 50% 0;background:${color};border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.4);transform:rotate(-45deg)"></div>`,iconSize:[18,18],iconAnchor:[9,18]});
 }
+function pinHome(color){
+  return L.divIcon({className:'',html:`
+    <div style="position:relative;width:40px;height:40px">
+      <div style="position:absolute;inset:0;border-radius:50%;background:${color};opacity:.22"></div>
+      <div style="position:absolute;left:5px;top:5px;width:30px;height:30px;border-radius:50% 50% 50% 0;background:${color};border:3px solid #fff;box-shadow:0 3px 10px rgba(0,0,0,.5);transform:rotate(-45deg)"></div>
+      <div style="position:absolute;left:0;top:0;width:40px;height:40px;display:flex;align-items:center;justify-content:center;font-size:17px;transform:translateY(-3px)">🏠</div>
+    </div>`,iconSize:[40,40],iconAnchor:[20,34]});
+}
 
-L.marker(home,{icon:pin('#ff7a45')}).addTo(map).bindPopup('<b>Дом — ЖК Ortau</b><br>Наурызбай батыра, 127, блок 3');
 L.marker(holidayInn,{icon:pin('#ffb340')}).addTo(map).bindPopup('<b>Halyk Bank, круглосуточно</b><br>Holiday Inn Almaty, ул. Тимирязева, 2д, 1 этаж');
 L.marker(bereke,{icon:pin('#ffb340')}).addTo(map).bindPopup('<b>Bereke Bank / Сбербанк, круглосуточно</b><br>ул. Тимирязева, 28');
+L.marker(home,{icon:pinHome('#ff7a45'),zIndexOffset:1000}).addTo(map).bindPopup('<b>Дом — ЖК Ortau</b><br>Наурызбай батыра, 127, блок 3');
 
 const routeToHolidayInn=[[43.236187,76.937828],[43.236236,76.938491],[43.236249,76.938655],[43.236261,76.938823],[43.236179,76.93886],[43.235976,76.93888],[43.235828,76.938894],[43.235278,76.938958],[43.234762,76.939017],[43.234441,76.939057],[43.234086,76.939102],[43.233869,76.939131],[43.233771,76.939143],[43.233719,76.939186],[43.233444,76.938692],[43.233373,76.938532],[43.233232,76.938217],[43.232802,76.937172],[43.232664,76.936796],[43.232412,76.936112],[43.232265,76.935781],[43.232055,76.935395],[43.232012,76.935328],[43.231902,76.93516],[43.231528,76.934641],[43.231465,76.934549],[43.231371,76.934413],[43.231529,76.934204],[43.231849,76.933779],[43.23194,76.933659],[43.231879,76.933563],[43.231719,76.933321],[43.23178,76.933243],[43.232151,76.932767],[43.232306,76.932982],[43.232379,76.933076],[43.23229,76.933194],[43.23194,76.933659],[43.231849,76.933779],[43.231529,76.934204],[43.231371,76.934413],[43.231465,76.934549],[43.231528,76.934641],[43.231902,76.93516],[43.232012,76.935328],[43.232055,76.935395],[43.232265,76.935781],[43.232412,76.936112],[43.232664,76.936796],[43.232802,76.937172],[43.233232,76.938217],[43.233373,76.938532],[43.233444,76.938692],[43.233719,76.939186],[43.233665,76.939263],[43.233648,76.939285],[43.233608,76.939339],[43.233582,76.939411],[43.2335,76.939516],[43.233441,76.939534],[43.233189,76.939759],[43.233111,76.939724],[43.232969,76.939551],[43.232846,76.939402],[43.232845,76.939209],[43.232947,76.938736],[43.233096,76.938544],[43.233129,76.938672],[43.233355,76.939005],[43.233386,76.939046]];
 L.polyline(routeToHolidayInn,{color:'#4da3ff',weight:4,opacity:.75,dashArray:'2 8'}).addTo(map);
